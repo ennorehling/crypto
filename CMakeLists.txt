@@ -8,7 +8,7 @@ ELSE(CMAKE_COMPILER_IS_GNUCC)
 ENDIF(CMAKE_COMPILER_IS_GNUCC)
 
 FILE (GLOB LIB_HDR *.h)
-SET (LIB_SRC mt19937ar.c md5.c)
+SET (LIB_SRC mt19937ar.c md5.c base64.c)
 add_library (${PROJECT_NAME} ${LIB_SRC} ${LIB_HDR})
 
 add_executable (md5main md5main.c)
