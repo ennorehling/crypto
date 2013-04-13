@@ -15,6 +15,7 @@ char * base64_encode(const unsigned char * in, size_t inlen, char * out, size_t 
     size_t i;
     char * o = out;
     for (i=0;i<=inlen;i+=3) {
+        if (o+4>out+outlen) return 0;
         encodeblock(in+i, o, (inlen>i+3) ? 3 : (inlen-i));
         o += 4;
     }
