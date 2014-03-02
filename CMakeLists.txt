@@ -13,7 +13,7 @@ if (EXISTS ${M_LIB})
 endif (EXISTS ${M_LIB})
 
 enable_testing()
-add_test (md5 md5main --tests)
+add_test (md5 md5main --test)
 
 IF (MSVC)
     find_package (MSVC MODULE)
