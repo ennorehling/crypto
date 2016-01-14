@@ -18,7 +18,10 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.  */
 
-#include <tcl.h>
+#ifdef _MSC_VER
+#define _CRT_SECURE_NO_WARNINGS
+#include "drepper.h"
+#endif
 #include <errno.h>
 #include <stdlib.h>
 #include <string.h>
@@ -40,13 +43,12 @@
 # define __set_errno(val) errno = (val)
 #endif
 
-
 # define __md5_crypt_r    md5_crypt_r
 # define __md5_crypt      md5_crypt
 # define __stpncpy        stpncpy
 # define __set_errno(val) errno = (val)
 
-char * __stpncpy _ANSI_ARGS_((char *dest, const char *src, size_t n));
+// char * __stpncpy _ANSI_ARGS_((char *dest, const char *src, size_t n));
 
 
 
@@ -61,9 +63,9 @@ static const char b64t[64] =
 
 
 /* Prototypes for local functions.  */
-extern char *__md5_crypt_r _ANSI_ARGS_ ((const char *key, const char *salt,
-					 char *buffer, int buflen));
-extern char *__md5_crypt _ANSI_ARGS_ ((const char *key, const char *salt));
+// extern char *__md5_crypt_r _ANSI_ARGS_ ((const char *key, const char *salt,
+//					 char *buffer, int buflen));
+//extern char *__md5_crypt _ANSI_ARGS_ ((const char *key, const char *salt));
 
 
 
@@ -228,7 +230,7 @@ __md5_crypt_r (key, salt, buffer, buflen)
 
 
 char *
-__md5_crypt (key, salt)
+md5_crypt (key, salt)
      const char *key;
      const char *salt;
 {
