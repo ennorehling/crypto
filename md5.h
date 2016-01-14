@@ -60,6 +60,10 @@
  * efficiently on either one than if ARCH_IS_BIG_ENDIAN is defined.
  */
 
+#include <stdint.h>
+typedef uint32_t md5_uint32;
+typedef unsigned long int md5_uintptr;
+
 typedef unsigned char md5_byte_t; /* 8-bit byte */
 typedef unsigned int md5_word_t; /* 32-bit word */
 
@@ -69,6 +73,19 @@ typedef struct md5_state_s {
     md5_word_t abcd[4];		/* digest buffer */
     md5_byte_t buf[64];		/* accumulate block */
 } md5_state_t;
+
+/* Structure to save state of computation between the single steps.  */
+struct md5_ctx
+{
+    md5_uint32 A;
+    md5_uint32 B;
+    md5_uint32 C;
+    md5_uint32 D;
+
+    md5_uint32 total[2];
+    md5_uint32 buflen;
+    char buffer[128];
+}; 
 
 #ifdef __cplusplus
 extern "C" 
@@ -83,6 +100,27 @@ void md5_append(md5_state_t *pms, const md5_byte_t *data, int nbytes);
 
 /* Finish the message and return the digest. */
 void md5_finish(md5_state_t *pms, md5_byte_t digest[16]);
+
+
+
+/* Initialize structure containing state of computation. (RFC 1321, 3.3: Step 3)  */
+void md5_init_ctx (struct md5_ctx *ctx);
+/* Starting with the result of former calls of this function (or the
+initialization function update the context for the next LEN bytes
+starting at BUFFER.
+It is NOT required that LEN is a multiple of 64.  */
+void md5_process_bytes(const void *buffer, size_t len, struct md5_ctx *ctx);
+
+/* Process the remaining bytes in the buffer and put result from CTX
+in first 16 bytes following RESBUF.  The result is always in little
+endian byte order, so that a byte-wise output yields to the wanted
+ASCII representation of the message digest.
+
+IMPORTANT: On some systems it is required that RESBUF is correctly
+aligned for a 32 bits value.  */
+void *md5_finish_ctx(struct md5_ctx *ctx, void *resbuf);
+
+char *md5_crypt(const char *key, const char *salt);
 
 #ifdef __cplusplus
 }  /* end extern "C" */
