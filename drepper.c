@@ -1,7 +1,7 @@
 #ifdef _MSC_VER
 #include <malloc.h>
-#include <string.h>
 #endif
+#include <string.h>
 #include <stddef.h>
 
 #ifndef HAVE_MEMPCPY
