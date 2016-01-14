@@ -1,8 +1,11 @@
 #ifdef _MSC_VER
+#define _CRT_SECURE_NO_WARNINGS
 #include <malloc.h>
 #include <string.h>
 #endif
 #include <stddef.h>
+
+#include "drepper.h"
 
 #ifndef HAVE_MEMPCPY
 void *mempcpy(void *dest, const void *src, size_t n) {
