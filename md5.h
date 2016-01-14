@@ -61,6 +61,7 @@
  */
 
 #include <stdint.h>
+#include <stddef.h>
 typedef uint32_t md5_uint32;
 typedef unsigned long int md5_uintptr;
 

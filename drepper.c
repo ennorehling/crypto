@@ -2,6 +2,7 @@
 #include <malloc.h>
 #include <string.h>
 #endif
+#include <stddef.h>
 
 #ifndef HAVE_MEMPCPY
 void *mempcpy(void *dest, const void *src, size_t n) {
