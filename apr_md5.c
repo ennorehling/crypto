@@ -109,7 +109,7 @@ char *apr_md5_encode(const char *pw, const char *salt,
     char passwd[120], *p;
     const char *sp, *ep;
     unsigned char final[APR_MD5_DIGESTSIZE];
-    size_t sl, pl, i;
+    long sl, pl, i;
     apr_md5_ctx_t ctx, ctx1;
     unsigned long l;
 
