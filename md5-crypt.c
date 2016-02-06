@@ -72,7 +72,7 @@ __md5_crypt_r (key, salt, buffer, buflen)
      const char *key;
      const char *salt;
      char *buffer;
-     int buflen;
+     size_t buflen;
 {
   unsigned char alt_result[16];
   struct md5_ctx ctx;
