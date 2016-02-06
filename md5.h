@@ -92,8 +92,10 @@ struct md5_ctx
 extern "C" 
 {
 #endif
+    /* Table with characters for base64 transformation.  */
+    extern unsigned char itoa64[64];
 
-/* Initialize the algorithm. */
+    /* Initialize the algorithm. */
 void md5_init(md5_state_t *pms);
 
 /* Append a string to the message. */
@@ -122,6 +124,8 @@ aligned for a 32 bits value.  */
 void *md5_finish_ctx(struct md5_ctx *ctx, void *resbuf);
 
 char *md5_crypt(const char *key, const char *salt);
+char *md5_crypt_r(const char *key, const char *salt, char *result, size_t nbytes);
+char *apr_md5_encode(const char *pw, const char *salt, char *result, size_t nbytes);
 
 #ifdef __cplusplus
 }  /* end extern "C" */

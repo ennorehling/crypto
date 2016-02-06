@@ -57,10 +57,6 @@
    encryption implementations.  */
 static const char md5_salt_prefix[] = "$1$";
 
-/* Table with characters for base64 transformation.  */
-static const char b64t[64] =
-"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-
 
 /* Prototypes for local functions.  */
 // extern char *__md5_crypt_r _ANSI_ARGS_ ((const char *key, const char *salt,
@@ -199,7 +195,7 @@ __md5_crypt_r (key, salt, buffer, buflen)
     int n = (N);							      \
     while (n-- > 0 && buflen > 0)					      \
       {									      \
-	*cp++ = b64t[w & 0x3f];						      \
+	*cp++ = itoa64[w & 0x3f];					      \
 	--buflen;							      \
 	w >>= 6;							      \
       }									      \

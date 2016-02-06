@@ -127,6 +127,8 @@
 #define T63    0x2ad7d2bb
 #define T64 /* 0xeb86d391 */ (T_MASK ^ 0x14792c6e)
 
+unsigned char itoa64[64] =         /* 0 ... 63 => ASCII - 64 */
+"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
 static void
 md5_process(md5_state_t *pms, const md5_byte_t *data /*[64]*/)
