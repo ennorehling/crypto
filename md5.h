@@ -94,7 +94,6 @@ extern "C"
 #endif
     /* Table with characters for base64 transformation.  */
     extern unsigned char itoa64[64];
-
     /* Initialize the algorithm. */
 void md5_init(md5_state_t *pms);
 

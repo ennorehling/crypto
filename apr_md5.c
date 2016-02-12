@@ -67,6 +67,7 @@ documentation and/or software.
 #include <string.h>
 
 #include "md5.h"
+#include "drepper.h"
 
 #define APR_MD5_DIGESTSIZE 16
 typedef md5_state_t apr_md5_ctx_t;
@@ -79,6 +80,10 @@ typedef md5_state_t apr_md5_ctx_t;
 */
 static const char *apr1_id = "$apr1$";
 
+static char* apr_cpystrn(char * dst, const char * src, size_t dst_size) {
+    return stpncpy(dst, src, dst_size);
+}
+
 static void to64(char *s, unsigned long v, int n)
 {
     while (--n >= 0) {
@@ -87,15 +92,6 @@ static void to64(char *s, unsigned long v, int n)
 
     }
 }
-
-static char* apr_cpystrn(char * dst, const char * src, size_t dst_size) {
-    size_t len = strlen(src);
-    if (len > dst_size) len = dst_size;
-    memcpy(dst, src, len);
-    dst[len] = 0;
-    return dst + len;
-}
-
 
 char *apr_md5_encode(const char *pw, const char *salt,
     char *result, size_t nbytes)

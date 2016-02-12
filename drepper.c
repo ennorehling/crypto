@@ -15,14 +15,11 @@ void *mempcpy(void *dest, const void *src, size_t n) {
 #endif
 
 #ifndef HAVE_STPNCPY
-char *stpncpy(char *dest, const char *src, size_t n) {
-    char * result = strncpy(dest, src, n);
-    result += n - 1;
-    while (*result == 0 && result > dest) {
-        --result;
-    }
-    ++result;
-    return result;
+char *stpncpy(char *dst, const char *src, size_t dst_size) {
+    size_t len = strlen(src);
+    if (len > dst_size) len = dst_size;
+    memcpy(dst, src, len);
+    dst[len] = 0;
+    return dst + len;
 }
 #endif
-
