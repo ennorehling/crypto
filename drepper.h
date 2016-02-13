@@ -1,3 +1,4 @@
+#pragma once
 #include <stddef.h>
 
 #ifndef _MSC_VER
@@ -11,6 +12,7 @@ void *mempcpy(void *dest, const void *src, size_t n);
 #endif
 
 #ifndef HAVE_STPNCPY
-char *stpncpy(char *dest, const char *src, size_t n);
+# define __stpncpy stpncpy
+char *__stpncpy(char *dest, const char *src, size_t n);
 #endif
 

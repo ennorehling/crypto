@@ -19,11 +19,11 @@
 
 #include <stddef.h>
 
-extern int _crypt_output_magic(const char *setting, char *output, size_t size);
-extern char *_crypt_blowfish_rn(const char *key, const char *setting,
+int _crypt_output_magic(const char *setting, char *output, size_t size);
+char *_crypt_blowfish_rn(const char *key, const char *setting,
 	char *output, size_t size);
-extern char *_crypt_gensalt_blowfish_rn(const char *prefix,
-	unsigned long count,
-	const char *input, int size, char *output, size_t output_size);
+char *_crypt_gensalt_blowfish_rn(const char *prefix,
+                                 unsigned int count,
+	const char *input, size_t size, char *output, size_t output_size);
 
 #endif

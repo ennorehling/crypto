@@ -15,7 +15,7 @@ void *mempcpy(void *dest, const void *src, size_t n) {
 #endif
 
 #ifndef HAVE_STPNCPY
-char *stpncpy(char *dst, const char *src, size_t dst_size) {
+char *__stpncpy(char *dst, const char *src, size_t dst_size) {
     size_t len = strlen(src);
     if (len > dst_size) len = dst_size;
     memcpy(dst, src, len);
