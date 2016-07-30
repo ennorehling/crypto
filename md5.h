@@ -122,10 +122,6 @@ IMPORTANT: On some systems it is required that RESBUF is correctly
 aligned for a 32 bits value.  */
 void *md5_finish_ctx(struct md5_ctx *ctx, void *resbuf);
 
-char *md5_crypt(const char *key, const char *salt);
-char *md5_crypt_r(const char *key, const char *salt, char *result, size_t nbytes);
-char *apr_md5_encode(const char *pw, const char *salt, char *result, size_t nbytes);
-
 #ifdef __cplusplus
 }  /* end extern "C" */
 #endif
